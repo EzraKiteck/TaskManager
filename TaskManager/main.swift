@@ -11,4 +11,3 @@ import Foundation
 let mainMenu = Menu()
 
 mainMenu.PrintMenu()
-mainMenu.inputNumeric(from: 1, to: 6)
