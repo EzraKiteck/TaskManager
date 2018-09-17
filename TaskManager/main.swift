@@ -8,6 +8,13 @@
 
 import Foundation
 
+let task1 = Task(taskName: "Complete Task Manager")
+let task2 = Task(taskName: "Take out the Trash")
+
+var taskList = [task1, task2]
+
 let mainMenu = Menu()
 
-mainMenu.PrintMenu()
+while mainMenu.running {
+    mainMenu.PrintMenu()
+}
