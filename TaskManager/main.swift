@@ -8,8 +8,8 @@
 
 import Foundation
 
-let task1 = Task(taskName: "Complete Task Manager")
-let task2 = Task(taskName: "Take out the Trash")
+let task1 = Task(taskName: "Complete Task Manager", priority: .High)
+let task2 = Task(taskName: "Take out the Trash", priority: .Medium)
 
 var taskList = [task1, task2]
 

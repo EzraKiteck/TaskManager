@@ -19,7 +19,8 @@ class Menu {
         1. Create a Task        2. Delete a Task
         3. Complete a Task      4. Set Task as Incomplete
         5. List Complete Tasks  6. List Incomplete Tasks
-        7. List All Tasks       8. Quit
+        7. List All Tasks       8. Change Priority
+        9. Quit
         """)
         
         switch inputNumeric(from: 1, to: 8) {
@@ -38,6 +39,8 @@ class Menu {
         case 7:
             listAllTasks()
         case 8:
+            changePriority()
+        case 9:
             Quit()
         default:
             print("This message should not show up. Ever.")
@@ -64,10 +67,32 @@ class Menu {
         return response!
     }
     
+    //Handles Priority Input
+    func inputPriority() -> Priority {
+        print("What will the priority of this task be?")
+        print("""
+         1: High
+         2: Medium
+         3: Low
+        """)
+        let response = inputNumeric(from: 1, to: 3)
+        switch response {
+        case 1:
+            return .High
+        case 2:
+            return .Medium
+        case 3:
+            return .Low
+        default:
+            print("This message should not ever appear.")
+        }
+        return .Medium
+    }
+    
     //Creates a Task
     func createTask() {
         print("What will the name of the task be?")
-        let task = Task(taskName: inputString())
+        let task = Task(taskName: inputString(), priority: inputPriority())
         taskList.append(task)
         print("'\(task.taskName)' added. \n")
     }
@@ -75,7 +100,7 @@ class Menu {
     //Deletes a Task
     func deleteTask() {
         for i in 0..<taskList.count {
-            print("\(i): \(taskList[i].taskName)")
+            print(" \(i): \(taskList[i].taskName)")
         }
         print("Enter the index of the task you want to delete.")
         let response = inputNumeric(from: 0, to: taskList.count - 1)
@@ -88,7 +113,7 @@ class Menu {
         var total = 0
         for i in 0..<taskList.count {
             if taskList[i].complete == false {
-                print("\(i): \(taskList[i].taskName)")
+                print(" \(i): \(taskList[i].taskName)")
                 total += 1
             }
         }
@@ -111,7 +136,7 @@ class Menu {
         var total = 0
         for i in 0..<taskList.count {
             if taskList[i].complete == true {
-                print("\(i): \(taskList[i].taskName)")
+                print(" \(i): \(taskList[i].taskName)")
                 total += 1
             }
         }
@@ -129,12 +154,29 @@ class Menu {
         }
     }
     
+    //Changes Priority of a task
+    func changePriority() {
+        var total = 0
+        for i in 0..<taskList.count {
+            print(" \(i): \(taskList[i].taskName)  ·\(taskList[i].priority) Priority·")
+            total += 1
+        }
+        if total == 0 {
+            print("You don't have any tasks! Try creating some.")
+        } else {
+            print("Enter the index of the task you want to edit.")
+            let response = inputNumeric(from: 0, to: taskList.count - 1)
+            taskList[response].priority = inputPriority()
+            print("'\(taskList[response].taskName)' has been marked as \(taskList[response].priority) priority. \n")
+        }
+    }
+    
     //Lists All Complete Tasks
     func listCompleteTasks() {
         var total = 0
         for item in taskList {
             if item.complete == true {
-                print(" - " + item.taskName)
+                print(" - \(item.taskName)  ·\(item.priority) Priority·")
                 total += 1
             }
         }
@@ -149,7 +191,7 @@ class Menu {
         var total = 0
         for item in taskList {
             if item.complete == false {
-                print(" - " + item.taskName)
+                print(" - \(item.taskName)  ·\(item.priority) Priority·")
                 total += 1
             }
         }
@@ -162,7 +204,7 @@ class Menu {
     //Lists All Tasks
     func listAllTasks() {
         for item in taskList {
-            print(" - " + item.taskName)
+            print(" - \(item.taskName)  ·\(item.priority) Priority·")
         }
         print("")
     }

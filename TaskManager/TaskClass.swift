@@ -13,10 +13,12 @@ class Task {
     //Properties
     var taskName: String
     var complete = false
+    var priority: Priority
     
     //Initializer
-    init(taskName: String) {
+    init(taskName: String, priority: Priority) {
         self.taskName = taskName
+        self.priority = priority
     }
     
     //Completes Task
