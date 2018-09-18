@@ -95,6 +95,7 @@ class Menu {
         let task = Task(taskName: inputString(), priority: inputPriority())
         taskList.append(task)
         print("'\(task.taskName)' added. \n")
+        taskList.sort(by: {$0.priority.rawValue > $1.priority.rawValue})
     }
     
     //Deletes a Task
@@ -169,6 +170,7 @@ class Menu {
             taskList[response].priority = inputPriority()
             print("'\(taskList[response].taskName)' has been marked as \(taskList[response].priority) priority. \n")
         }
+        taskList.sort(by: {$0.priority.rawValue > $1.priority.rawValue})
     }
     
     //Lists All Complete Tasks

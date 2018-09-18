@@ -11,7 +11,8 @@ import Foundation
 let task1 = Task(taskName: "Complete Task Manager", priority: .High)
 let task2 = Task(taskName: "Take out the Trash", priority: .Medium)
 
-var taskList = [task1, task2]
+var taskList = [task2, task1]
+taskList.sort(by: {$0.priority.rawValue > $1.priority.rawValue})
 
 let mainMenu = Menu()
 
