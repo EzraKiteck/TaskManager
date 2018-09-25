@@ -14,25 +14,12 @@ class Task {
     var taskName: String
     var complete = false
     var priority: Priority
+    var completeDate = Date()
     
     //Initializer
     init(taskName: String, priority: Priority) {
         self.taskName = taskName
         self.priority = priority
-    }
-    
-    //Completes Task
-    func CompleteTask() {
-        if !complete {
-            complete = true
-        }
-    }
-    
-    //Sets Task to Incomplete - (May not use this function...)
-    func UncompleteTask() {
-        if complete {
-            complete = false
-        }
     }
     
 }

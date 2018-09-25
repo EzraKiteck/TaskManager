@@ -8,6 +8,9 @@
 
 import Foundation
 
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = " MM/dd/yyyy"
+
 let task1 = Task(taskName: "Complete Task Manager", priority: .High)
 let task2 = Task(taskName: "Take out the Trash", priority: .Medium)
 

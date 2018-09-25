@@ -51,6 +51,18 @@ class Menu {
     func inputNumeric(from first: Int, to last: Int) -> Int {
         var response = Int(readLine()!)
         while response == nil || response! < first || response! > last {
+            if response == 49 {
+                print("This is the wrong number!  The wrong number song!")
+                sleep(1)
+                print("We're very very sorry that you got it wrong!")
+                sleep(2)
+            }
+            if response! < 0 {
+                print("Do you really think that's an option, or are you trying to break the program?")
+            }
+            if response! > 9000 {
+                print("YOUR RESPONSE IS OVER 9000!!!")
+            }
             print("Please input a number between \(first) and \(last).")
             response = Int(readLine()!)
         }
@@ -63,6 +75,14 @@ class Menu {
         while response == nil {
             print("Please enter a valid input.")
             response = readLine()
+        }
+        if response == "exit code: 9" {
+            print("Yeah, it doesn't work like that my friend.")
+            sleep(1)
+        }
+        if response == "ninja pineapple" {
+            print("[Insert awesome motto here]")
+            sleep(1)
         }
         return response!
     }
@@ -93,6 +113,9 @@ class Menu {
     func createTask() {
         print("What will the name of the task be?")
         let task = Task(taskName: inputString(), priority: inputPriority())
+        print("In how many days do you want to accomplish this task?")
+        task.completeDate = Calendar.current.date(byAdding: .day, value: inputNumeric(from: 0, to: 365), to: task.completeDate)!
+        //print(dateFormatter.string(from: task.completeDate))
         taskList.append(task)
         print("'\(task.taskName)' added. \n")
         taskList.sort(by: {$0.priority.rawValue > $1.priority.rawValue})
@@ -193,7 +216,7 @@ class Menu {
         var total = 0
         for item in taskList {
             if item.complete == false {
-                print(" - \(item.taskName)  ·\(item.priority) Priority·")
+                print(" - \(item.taskName)  ·\(item.priority) Priority·  Due on\(dateFormatter.string(from: item.completeDate))")
                 total += 1
             }
         }
