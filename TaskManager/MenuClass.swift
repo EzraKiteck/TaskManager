@@ -23,7 +23,7 @@ class Menu {
         9. Quit
         """)
         
-        switch inputNumeric(from: 1, to: 8) {
+        switch inputNumeric(from: 1, to: 9) {
         case 1:
             createTask()
         case 2:
